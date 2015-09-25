@@ -20,7 +20,6 @@
 #include <sys/types.h>
 
 #include <cutils/compiler.h>
-#include <cutils/iosched_policy.h>
 
 #include <gui/BitTube.h>
 #include <gui/IDisplayEventConnection.h>
@@ -87,7 +86,6 @@ void EventThread::sendVsyncHintOnLocked() {
 
 void EventThread::onFirstRef() {
     run("EventThread", PRIORITY_URGENT_DISPLAY + PRIORITY_MORE_FAVORABLE);
-    android_set_rt_ioprio(getTid(), 1);
 }
 
 sp<EventThread::Connection> EventThread::createEventConnection() const {
